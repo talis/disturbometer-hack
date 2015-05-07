@@ -12,19 +12,31 @@ angular.module('disturbometerApp')
     $scope.logout = function () {
       Auth.$unauth();
     };
-    $scope.profile = $firebaseObject(Ref.child('users/' + user.uid));
 
     /**
      * Sync google profile with our firebase profile.
      */
-
+    $scope.initProfile = function(){
     // sync the logged in user with their account profile
     $scope.profile.givenName = $scope.user.google.cachedUserProfile.given_name || null;
     $scope.profile.picture = $scope.user.google.cachedUserProfile.picture || null;
     $scope.profile.displayName = $scope.user.google.displayName || null;
     $scope.profile.email = $scope.user.google.email || null;
     $scope.profile.macAddresses = $scope.profile.macAddresses  || null;
+    $scope.profile.$save();
+    };
 
+    $scope.profile = $firebaseObject(Ref.child('profile/' + user.uid));
+    $scope.profile.$loaded()
+      .then(function(data) {
+        console.log(data);
+        $scope.initProfile();
+      })
+      .catch(function(error){
+        console.error('Error:',error);
+      });
+
+    console.log($scope.profile.$id);
     /**
      * Mac address management
      */
