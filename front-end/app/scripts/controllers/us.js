@@ -7,60 +7,25 @@
  * A demo of using AngularFire to manage a synchronized list.
  */
 angular.module('disturbometerApp')
-//  .controller('UsCtrl', ['$scope', '$rootScope', 'Ref', '$firebaseArray', '$timeout', function ($scope, $rootScope, Ref, $firebaseArray, $timeout) {
   .controller('UsCtrl', ['$scope', '$rootScope', 'Ref', '$firebaseArray', function ($scope, $rootScope, Ref, $firebaseArray) {
-    var users = [
-            {   'name'  : 'Russell Hill',
-                'email' : 'rh@talis.com',
-                'status': 'available',
-                'inOffice' : true},  
-            {   'name'  : 'Tim Hodson',
-                'email' : 'tim.hodson@talis.com',
-                'status': 'unavailable',
-                'inOffice' : true},  
-            {   'name'  : 'Jeremy Baines',
-                'email' : 'jeremy.baines@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Mark Wallsgrove',
-                'email' : 'mw@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Matt Moran',
-                'email' : 'mm@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Arunn Ramadoss',
-                'email' : 'ar@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Nigel Ashworth',
-                'email' : 'nigel.ashworth@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Nadeem Shabir',
-                'email' : 'ns@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Richard Gubby',
-                'email' : 'rg@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Richard Tattersall',
-                'email' : 'rt@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true},  
-            {   'name'  : 'Chris Clarke',
-                'email' : 'cc@talis.com',
-                'status': 'disturbable',
-                'inOffice' : true}  
-    ];
-      
-    console.log(users);
+    var allUsers = $firebaseArray(Ref.child('/seedusers'));
+    var clonedArray = [];
     
+    allUsers.$loaded(
+        function() {
+            allUsers.forEach(function(user) {
+                var newUser = JSON.parse(JSON.stringify(user));
+
+                // add in missing properties from seed users               
+                newUser.inOffice = true;
+                newUser.status = 'available'; 
+                clonedArray.push(newUser);
+            });
+    });
+            
     $rootScope.activeTab = 'us';
     
-    $scope.users = users;
+    $scope.users = clonedArray;
       
     var list = $firebaseArray(Ref.child('/events/nmapscans').limitToLast(1));
     

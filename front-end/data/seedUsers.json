@@ -56,5 +56,9 @@
             {   "name"  : "Alison Rooney",
                 "email" : "alison.rooney@talis.com"},
             {   "name"  : "Alan Dix",
-                "email" : "ajd@talis.com"}
+                "email" : "ajd@talis.com"},
+            {   "name"  : "Roman Goj",
+                "email" : "roman.goj@talis.com"},
+            {   "name"  : "Camille Fenton",
+                "email" : "cf@talis.com"}
     ]
