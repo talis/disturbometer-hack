@@ -8,8 +8,8 @@
  */
 angular.module('disturbometerApp')
 //  .controller('UsCtrl', ['$scope', '$rootScope', 'Ref', '$firebaseArray', '$timeout', function ($scope, $rootScope, Ref, $firebaseArray, $timeout) {
-  .controller('UsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-      var users = [
+  .controller('UsCtrl', ['$scope', '$rootScope', 'Ref', '$firebaseArray', function ($scope, $rootScope, Ref, $firebaseArray) {
+    var users = [
             {   'name'  : 'Russell Hill',
                 'email' : 'rh@talis.com',
                 'status': 'available',
@@ -54,37 +54,27 @@ angular.module('disturbometerApp')
                 'email' : 'cc@talis.com',
                 'status': 'disturbable',
                 'inOffice' : true}  
-      ];
+    ];
       
-      console.log(users);
-
-      $rootScope.activeTab = 'us';
-
-      $scope.users = users;
+    console.log(users);
+    
+    $rootScope.activeTab = 'us';
+    
+    $scope.users = users;
       
-    // synchronize a read-only, synchronized array of messages, limit to most recent 10
-//    $scope.messages = $firebaseArray(Ref.child('messages').limitToLast(10));
+    var list = $firebaseArray(Ref.child('/events/nmapscans').limitToLast(1));
+    
+    list.$watch(function(event) {
+      var newEvent = list.$getRecord(event.key);
+      
+      if (newEvent && newEvent.mac_addresses) {
+          console.log(newEvent);
+          console.log(newEvent.mac_addresses.length);
+          
+          $scope.devicesConnected = newEvent.mac_addresses.length;
+          $scope.deviceList = newEvent.mac_addresses;
+          $scope.lastCheckTime = newEvent.last_seen;
+      }
+    });
 
-    // display any errors
-//    $scope.messages.$loaded().catch(alert);
-
-    // provide a method for adding a message
-//    $scope.addMessage = function(newMessage) {
-//      if( newMessage ) {
-//        push a message to the end of the array
-//        $scope.messages.$add({text: newMessage})
-//          display any errors
-//          .catch(alert);
-//      }
-//    };
-
-//    function alert(msg) {
-//      $scope.err = msg;
-//      $timeout(function() {
-//        $scope.err = null;
-//      }, 5000);
-//    }
-
-
-console.log('here!!!');
   }]);

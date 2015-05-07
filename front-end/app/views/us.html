@@ -1,13 +1,24 @@
 
 <h2>Us</h2>
 
-<div class="person">person
-<img src="">
+<h4>Connected Devices : {{devicesConnected}} @ {{lastCheckTime}}</h4>
+
+<div ng-show="showDeviceList" ng-repeat="device in deviceList track by $index">
+	<div class="row">
+		<div class="col-md-4">
+			{{device.mac_address}}
+		</div>
+		<div class="col-md-4">
+			{{device.ip_address}}
+		</div>
+		<div class="col-md-4">
+			{{device.vendor}}
+		</div>
+	</div>
 </div>
 
 <div ng-repeat="user in users">
 	<div user-display user="user">
 </div>
-
 
 <p class="alert alert-danger" ng-show="err">{{err}}</p>
