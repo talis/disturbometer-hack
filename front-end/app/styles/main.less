@@ -20,6 +20,7 @@
 
 /* sizes */
 @profile-image-size: 200px;
+@user-border-width: 15px;
 
 html {
   position: relative;
@@ -204,6 +205,51 @@ h1 {
   text-align: center;
   font-size: 2em;
 }
+
+.user-container {
+  text-align: center;
+  width: 220px;
+  float: left;
+  
+  .user-image {
+    height: @profile-image-size;
+    width: @profile-image-size;
+    line-height: @profile-image-size;
+    border-radius: @profile-image-size / 2;
+  
+    background-color: @brand-secondary-2;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  .not-in-office {
+    width: 170px;
+    height: 170px;
+    background-color: white;
+    opacity: 0.7;
+    position: relative;
+    top: -185px;
+    border-radius: 100px;
+    left: 25px;
+    }
+  .availability-normal {
+    border: @user-border-width solid transparent;
+  }  
+  .availability-available {
+    border: @user-border-width solid green;
+  }  
+  .availability-unavailable {
+    border: @user-border-width solid red;
+  }  
+  .availability-disturbable {
+    border: @user-border-width solid orange;
+  }  
+  
+  .user-name {
+    font-weight: bold;
+  }
+}  
 
 .browsehappy {
   margin: 0.2em 0;
