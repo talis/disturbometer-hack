@@ -11,7 +11,8 @@
     "angular-route": "^1.3.0",
     "angular-sanitize": "^1.3.0",
     "angular-touch": "^1.3.0",
-    "talis-bootstrap": "~3.1.2"
+    "talis-bootstrap": "~3.1.2",
+    "lodash": "~3.8.0"
   },
   "devDependencies": {
     "mockfirebase": "0.11.0",

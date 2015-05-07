@@ -47,10 +47,11 @@ angular.module('disturbometerApp')
       if (typeof $scope.profile.macAddresses === 'undefined') {
         $scope.profile.macAddresses = {};
       }
-      $scope.profile.macAddresses[$scope.newMacAddressName] = $scope.newMacAddress;
+      $scope.profile.macAddresses[$scope.newMacAddress] = $scope.newMacAddressName;
+      $scope.profile.$save();
+
       $scope.newMacAddressName = '';
       $scope.newMacAddress = '';
-      $scope.profile.$save();
     };
 
     $scope.removeMacAddress = function (macKey) {
