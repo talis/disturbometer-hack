@@ -96,7 +96,18 @@ while True:
 
 	for h in nm.all_hosts():
     		if 'mac' in nm[h]['addresses']:
-			macs.append(nm[h]['addresses']['mac'])
+			vendor = nm[h]['vendor']
+			vendor_device = ''
+			if vendor:
+				vendor_device = nm[h]['vendor'][nm[h]['addresses']['mac']]
+			# print nm[h]['addresses']['mac'], nm[h]['addresses']['ipv4'], vendor_device
+			device_info = {
+				'mac_address' : nm[h]['addresses']['mac'],
+				'ip_address' : nm[h]['addresses']['ipv4'],
+				'vendor' : vendor_device
+			}
+			# macs.append(nm[h]['addresses']['mac'])
+			macs.append(device_info)
 
 	# formulate a data object to send to firebase
 	data = {
