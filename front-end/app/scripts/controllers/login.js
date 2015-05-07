@@ -10,7 +10,7 @@ angular.module('disturbometerApp')
   .controller('LoginCtrl', function ($scope, Auth, $location) {
     $scope.oauthLogin = function(provider) {
       $scope.err = null;
-      Auth.$authWithOAuthPopup(provider, {rememberMe: true}).then(redirect, showError);
+      Auth.$authWithOAuthPopup(provider, {rememberMe: true, scope: 'email'}).then(redirect, showError);
     };
 
     $scope.anonymousLogin = function() {
@@ -18,10 +18,9 @@ angular.module('disturbometerApp')
       Auth.$authAnonymously({rememberMe: true}).then(redirect, showError);
     };
 
-    
 
     function redirect() {
-      $location.path('/account');
+        $location.path('/account');
     }
 
     function showError(err) {
