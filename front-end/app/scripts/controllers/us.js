@@ -7,8 +7,8 @@
  * A demo of using AngularFire to manage a synchronized list.
  */
 angular.module('disturbometerApp')
-  .controller('UsCtrl', function ($scope) {
-//  .controller('UsCtrl', function ($scope, Ref, $firebaseArray, $timeout) {
+//  .controller('UsCtrl', ['$scope', '$rootScope', 'Ref', '$firebaseArray', '$timeout', function ($scope, $rootScope, Ref, $firebaseArray, $timeout) {
+  .controller('UsCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
       var users = [
             {   'name'  : 'Russell Hill',
                 'email' : 'rh@talis.com',
@@ -57,7 +57,9 @@ angular.module('disturbometerApp')
       ];
       
       console.log(users);
-      
+
+      $rootScope.activeTab = 'us';
+
       $scope.users = users;
       
     // synchronize a read-only, synchronized array of messages, limit to most recent 10
@@ -85,4 +87,4 @@ angular.module('disturbometerApp')
 
 
 console.log('here!!!');
-  });
+  }]);

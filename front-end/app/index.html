@@ -29,16 +29,14 @@
           </div>
 
           <div class="navbar-collapse collapse">
-
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#/">Disturbometer</a></li>
+              <li ng-class="{active:activeTab=='main'}"><a href="#/">Disturbometer</a></li>
               <!-- //angularfire -->
-              <li><a ng-href="#/us">Disturb us</a></li>
-              <li>
-              <a ng-hide-auth="" href="#/login">log in</a>
-              <a ng-show-auth="" href="#/account">account</a>
-            </li>
-
+              <li ng-class="{active:activeTab=='us'}"><a ng-href="#/us">Disturb us</a></li>
+              <li ng-class="{active:activeTab=='account'}" >
+                <a ng-hide-auth="" href="#/login">log in</a>
+                <a ng-show-auth="" href="#/account">account</a>
+              </li>
             </ul>
           </div>
         </div>
