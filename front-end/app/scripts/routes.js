@@ -62,7 +62,7 @@ angular.module('disturbometerApp')
         controller: 'MainCtrl'
       })
 
-      .when('/us', {
+      .whenAuthenticated('/us', {
         templateUrl: 'views/us.html',
         controller: 'UsCtrl'
       })
