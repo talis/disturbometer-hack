@@ -1,18 +1,25 @@
 
 <h2>Us</h2>
 
-<h4>Connected Devices : {{devicesConnected}} @ {{lastCheckTime}}</h4>
+<h4>Connected Devices : {{devicesConnected}} @ {{lastCheckTime}}</h4><button ng-click="showDeviceList=!showDeviceList" class="btn btn-default btn-sm">View <Devices></Devices></button>
 
-<div ng-show="showDeviceList" ng-repeat="device in deviceList track by $index">
+<div ng-show="showDeviceList">
 	<div class="row">
-		<div class="col-md-4">
-			{{device.mac_address}}
-		</div>
-		<div class="col-md-4">
-			{{device.ip_address}}
-		</div>
-		<div class="col-md-4">
-			{{device.vendor}}
+		<div class="col-md-4 header-row">MAC</div>
+		<div class="col-md-4 header-row">IP</div>
+		<div class="col-md-4 header-row">Vendor</div>
+	</div>
+	<div ng-repeat="device in deviceList track by $index">
+		<div class="row">
+			<div class="col-md-4">
+				{{device.mac_address}}
+			</div>
+			<div class="col-md-4">
+				{{device.ip_address}}
+			</div>
+			<div class="col-md-4">
+				{{device.vendor}}
+			</div>
 		</div>
 	</div>
 </div>
