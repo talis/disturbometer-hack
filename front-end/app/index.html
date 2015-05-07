@@ -22,19 +22,18 @@
 
     <!-- Add your site or application content here -->
     <div class="header" ng-cloak="">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
+      <div class="navbar navbar-static-top navbar-default" role="navigation">
+        <div class="container navbar-inner">
           <div class="navbar-header">
-
-            <a class="navbar-brand" href="#/">disturbometer</a>
+            <span class="brand"></span>
           </div>
 
-          <div class="collapse">
+          <div class="navbar-collapse collapse">
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#/">Disturbometer</a></li>
               <!-- //angularfire -->
-              <li><a ng-href="#/chat">chat</a></li>
+              <li><a ng-href="#/us">Disturb us</a></li>
               <li>
               <a ng-hide-auth="" href="#/login">log in</a>
               <a ng-show-auth="" href="#/account">account</a>
@@ -89,7 +88,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/angularfire/config.js"></script>
         <script src="scripts/angularfire/firebase.ref.js"></script>
-        <script src="scripts/controllers/chat.js"></script>
+        <script src="scripts/controllers/us.js"></script>
         <script src="scripts/filters/reverse.js"></script>
         <script src="scripts/angularfire/auth.js"></script>
         <script src="scripts/controllers/login.js"></script>

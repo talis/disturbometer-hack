@@ -1,0 +1,290 @@
+@import "/bower_components/talis-bootstrap/less/variables.less";
+@import "/bower_components/talis-bootstrap/less/mixins/image.less";
+@import "/bower_components/talis-bootstrap/less/mixins/center-block.less";
+@import "/bower_components/talis-bootstrap/less/mixins/border-radius.less";
+@import "/bower_components/talis-bootstrap/less/mixins/table-row.less";
+@import "/bower_components/talis-bootstrap/less/mixins/vendor-prefixes.less";
+@import "/bower_components/talis-bootstrap/less/tables.less";
+
+@brand-secondary-1: #017d87;
+@brand-secondary-2: #60888d;
+@brand-secondary-3: rgb(0, 54, 58);
+@brand-secondary-4: #000000;
+@brand-secondary-5: #c5197d;
+
+
+@article-image-width: 650px;
+@footer-height: 80px;
+
+@font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* sizes */
+@profile-image-size: 200px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: @font-family-sans-serif;
+  //  font-family: "Open Sans";
+}
+
+#main {
+  padding-top: 20px;
+}
+
+h1 {
+  font-size: 31.5px;
+}
+
+.header {
+  background-color: @brand-primary;
+  padding: 0;
+  margin: 0;
+}
+
+.brand {
+  background-image: url("../images/logo_2x.png");
+  background-repeat: no-repeat;
+  background-size: 70px 30px;
+  background-position: 0 60%;
+  min-width: 75px;
+  height: 50px;
+  display: block;
+  position: relative;
+  padding: 0 0 0 100px;
+}
+
+#masthead {
+  padding: 20px 0 20px 0;
+  background-color: #ebebeb;
+}
+#masthead h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.content h1 {
+  font-size: @font-size-h1 * 0.8;
+}
+.content h2 {
+  font-size: @font-size-h2 * 0.8;
+}
+.content h3 {
+  font-size: @font-size-h3 * 0.8;
+}
+.content h4 {
+  font-size: @font-size-h4 * 0.8;
+}
+
+//section.content p:first-of-type{
+//  color: @brand-primary;
+//  background-color: #ebebeb;
+//  width: 30%;
+//  display: block;
+//  float: right;
+//  padding: @alert-padding;
+//  .border-top-radius(@border-radius-base);
+//  .border-bottom-radius(@border-radius-base);
+//  margin: 0 0 @grid-gutter-width @grid-gutter-width;
+//}
+
+.byline {
+  //  float: right;
+  font-size: 0.9em;
+  margin-top: 20px;
+  color: @gray-light;
+}
+
+.article img {
+  .img-responsive();
+  .center-block();
+}
+
+.brand .navbar-brand {
+  padding: 12px;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar .nav>li>a {
+  padding-top: 20px;
+  padding-bottom: 19px;
+}
+
+.navbar-inner {
+  height: 41px;
+}
+
+@sublevel-gap: 10px;
+
+.nav-sublevel {
+  padding-left: @grid-gutter-width;
+  font-size: 12px;
+  list-style: none;
+  list-style-image: none;
+  margin-top: @sublevel-gap;
+  line-height: 12px;
+}
+
+.nav-sublevel li {
+  margin-bottom: @sublevel-gap;
+}
+
+.nav-sublevel a {
+  display: block;
+  padding: 0 3px 0 0;
+}
+
+.nav-sublevel li.active a {
+  color: #000000;
+}
+
+.sidebar p {
+  font-size: 12px;
+}
+.sidebar h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #999999;
+}
+
+.sidebar a.btn {
+  margin: 3px;
+  width: 120px;
+}
+
+.menu-pipe {
+  color: #cccccc;
+}
+.articles {
+  margin-top: @grid-gutter-width;
+}
+
+.step {
+  padding-bottom: @grid-gutter-width;
+}
+
+.step a {
+  text-decoration: none;
+}
+
+.step-number:hover {
+  background-color: @brand-primary;
+}
+
+.circle {
+  display: block;
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+
+  -moz-border-radius: 30px; /* or 50% */
+  border-radius: 30px; /* or 50% */
+
+  background-color: @brand-secondary-5;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+}
+
+.profile-image {
+  display: block;
+  height: @profile-image-size;
+  width: @profile-image-size;
+  line-height: @profile-image-size;
+  border-radius: @profile-image-size / 2;
+
+  background-color: @brand-secondary-2;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 10px;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}

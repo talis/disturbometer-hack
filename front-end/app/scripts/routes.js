@@ -62,9 +62,9 @@ angular.module('disturbometerApp')
         controller: 'MainCtrl'
       })
 
-      .when('/chat', {
-        templateUrl: 'views/chat.html',
-        controller: 'ChatCtrl'
+      .when('/us', {
+        templateUrl: 'views/us.html',
+        controller: 'UsCtrl'
       })
       .when('/login', {
         templateUrl: 'views/login.html',

@@ -1,27 +1,34 @@
 
 <div>
 <div>
-  <h3>Profile</h3>
+  <h2>Hi {{user.google.cachedUserProfile.given_name}}</h2>
 
+  <div class="status-ring">
+    <img class="profile-image" src="{{user.google.cachedUserProfile.picture}}">
+  </div>
   <form role="form">
     <p class="form-group">
-      <label>Account ID</label>
-      <br />{{user.uid}}
+      <!--<label>Account ID</label>-->
+      <!--<br />{{user.uid}}-->
+      {{user}}
+      <pre>
+      {{disturbometerUser}}
+    </pre>
     </p>
 
     <p class="form-group">
       <label>Name:</label>
-      <input type="text" name="name" ng-model="profile.name" />
+      <input type="text" name="name" ng-model="user.google.displayName" />
     </p>
 
     <p class="form-group">
       <label>Email:</label>
-      <br />{{profile.email}}
+      &nbsp; {{user.google.email}}
     </p>
   </form>
 
   <p>
-    <button role="button" ng-click="logout()">Log Out</button>
+    <button class="btn btn-small btn-primary" role="button" ng-click="logout()">Log Out</button>
   </p>
 </div>
 

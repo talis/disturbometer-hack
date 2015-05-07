@@ -48,6 +48,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
+      recess: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
+        tasks: ['recess:dist']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -214,6 +218,22 @@ module.exports = function (grunt) {
       }
     },
 
+    // CSS building
+    recess: {
+      options: {
+        compile: true
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles',
+          src: '{,*/}*.less',
+          dest: '.tmp/styles/',
+          ext: '.css'
+        }]
+      }
+    },
+
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -366,12 +386,15 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'recess:dist',
         'copy:styles'
       ],
       test: [
+        'recess:dist',
         'copy:styles'
       ],
       dist: [
+        'recess:dist',
         'copy:styles',
         'imagemin',
         'svgmin'
