@@ -8,10 +8,12 @@
  * Controller of the disturbometerApp
  */
 angular.module('disturbometerApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+    
+    $rootScope.activeTab = 'main';
+  }]);

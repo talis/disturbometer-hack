@@ -1,0 +1,6 @@
+<div class="user-container">
+	<img class="user-image availability-normal" src="images/users/{{user.imageSrc}}.jpg" ng-class="{'availability-available':user.status=='available','availability-unavailable':user.status=='unavailable','availability-disturbable':user.status=='disturbable'}"></img>
+	<div class="not-in-office" ng-hide="user.inOffice==true"></div>
+	<div class="user-name">{{user.name}}</div>
+	<div class="user-status">{{user.status}}</div>
+</div>
