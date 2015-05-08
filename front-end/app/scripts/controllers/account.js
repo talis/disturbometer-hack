@@ -44,7 +44,7 @@ angular.module('disturbometerApp')
     $scope.newMacAddress = '';
 
     $scope.addMacAddress = function () {
-      if (typeof $scope.profile.macAddresses === 'undefined') {
+      if (typeof $scope.profile.macAddresses === 'undefined' || $scope.profile.macAddresses === null) {
         $scope.profile.macAddresses = {};
       }
       $scope.profile.macAddresses[$scope.newMacAddress] = $scope.newMacAddressName;
