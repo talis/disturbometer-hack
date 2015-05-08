@@ -21,7 +21,7 @@
 
       <ul>
         <li ng-repeat="(macAddress, name) in profile.macAddresses">{{name}} &mdash; {{macAddress}}
-          <a href="" ng-click="removeMacAddress(name)">&nbsp;delete <span class="glyphicon glyphicon-trash"></span></a></li>
+          <a href="" ng-click="removeMacAddress(macAddress)">&nbsp;delete <span class="glyphicon glyphicon-trash"></span></a></li>
       </ul>
       <input type="text" name="NewMacAddressName" ng-model="newMacAddressName" placeholder="Device Name" >
       <input type="text" name="NewMacAddress" ng-model="newMacAddress" placeholder="MAC address" >
