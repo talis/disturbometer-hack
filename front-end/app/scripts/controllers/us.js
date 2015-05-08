@@ -57,10 +57,10 @@ angular.module('disturbometerApp')
 //        console.log('users', $scope.users);
         // go through the users and look for mac addresses
         $window._.each($scope.users, function(user){
-          if(typeof user.macAddress !== 'undefined'){
+          if(typeof user.macAddress !== 'undefined' && user.macAddress !== null){
 //            console.log('This user has some mac addresses associated with their account');
             $window._.each(user.macAddress, function(n, key){
-              var index = $window._.findIndex($scope.deviceList, 'mac_address', key);
+              var index = $window._.findIndex($scope.deviceList, 'mac_address', key.toUpperCase());
 //              console.log('index:', index);
               if(index !== -1){
                 user.status = 'available';
