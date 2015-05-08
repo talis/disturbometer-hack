@@ -7,7 +7,8 @@
  * A demo of using AngularFire to manage a synchronized list.
  */
 angular.module('disturbometerApp')
-  .controller('UsCtrl', ['$scope', '$rootScope', 'Ref', '$firebaseArray', function ($scope, $rootScope, Ref, $firebaseArray) {
+  .controller('UsCtrl', ['$scope', '$rootScope', 'Ref', '$firebaseArray', '$window',
+    function ($scope, $rootScope, Ref, $firebaseArray, $window) {
     $rootScope.activeTab = 'us';
     var allUsers = $firebaseArray(Ref.child('/seedusers'));
     var clonedArray = {};
@@ -28,17 +29,17 @@ angular.module('disturbometerApp')
       });
     $scope.users = clonedArray;
 
-    var allProfiles = $firebaseArray(Ref.child('/profile'))
-    allProfiles.$loaded().then(function (data) {
-      //loop through the profiles
-      data.forEach(function (profile) {
-        console.log($scope.users[profile.email]);
-        $scope.users[profile.email].hasProfile = true;
-        $scope.users[profile.email].macAddress = profile.macAddresses;
-        $scope.users[profile.email].status = 'interuptable';
+    var allProfiles = $firebaseArray(Ref.child('/profile'));
+    allProfiles.$loaded()
+      .then(function (data) {
+        //loop through the profiles
+        data.forEach(function (profile) {
+          console.log($scope.users[profile.email]);
+          $scope.users[profile.email].hasProfile = true;
+          $scope.users[profile.email].macAddress = profile.macAddresses;
+          $scope.users[profile.email].status = 'unavailable';
+        });
       });
-    });
-
 
     var macAddressList = $firebaseArray(Ref.child('/events/nmapscans').limitToLast(1));
 
@@ -46,25 +47,28 @@ angular.module('disturbometerApp')
       var newEvent = macAddressList.$getRecord(event.key);
 
       if (newEvent && newEvent.mac_addresses) {
-        console.log(newEvent);
-        console.log(newEvent.mac_addresses.length);
+        console.log('nmapscans updated:', newEvent);
+        console.log('num nmapscans: ', newEvent.mac_addresses.length);
 
         $scope.devicesConnected = newEvent.mac_addresses.length;
         $scope.deviceList = newEvent.mac_addresses;
         $scope.lastCheckTime = newEvent.last_seen;
 
-        // go through the address list and for each mac address
-        $scope.deviceList.forEach(function(device){
-          console.log('device', device);
-          var index = _.findIndex($scope.users, device.mac_address);
-          if(index != -1){
-            console.log('index', index);
-            $scope.users[index].status = 'available';
+//        console.log('users', $scope.users);
+        // go through the users and look for mac addresses
+        $window._.each($scope.users, function(user){
+          if(typeof user.macAddress !== 'undefined'){
+//            console.log('This user has some mac addresses associated with their account');
+            $window._.each(user.macAddress, function(n, key){
+              var index = $window._.findIndex($scope.deviceList, 'mac_address', key);
+//              console.log('index:', index);
+              if(index !== -1){
+                user.status = 'available';
+                user.lastSeen = $scope.lastCheckTime;
+              }
+            });
           }
         });
-        // find a profile that contains the mac address
-        // update some status
-
       }
     });
 
