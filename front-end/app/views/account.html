@@ -20,11 +20,11 @@
       <label>Mac Addresses</label>
 
       <ul>
-        <li ng-repeat="(name, macAddress) in profile.macAddresses">{{name}} &mdash; {{macAddress}}
+        <li ng-repeat="(macAddress, name) in profile.macAddresses">{{name}} &mdash; {{macAddress}}
           <a href="" ng-click="removeMacAddress(name)">&nbsp;delete <span class="glyphicon glyphicon-trash"></span></a></li>
       </ul>
-      <input type="text" name="NewMacAddressName" ng-model="newMacAddressName" >
-      <input type="text" name="NewMacAddress" ng-model="newMacAddress" >
+      <input type="text" name="NewMacAddressName" ng-model="newMacAddressName" placeholder="Device Name" >
+      <input type="text" name="NewMacAddress" ng-model="newMacAddress" placeholder="MAC address" >
       <button class="btn btn-success btn-sm" ng-click="addMacAddress()">Add Mac Address</button>
     </p>
 
